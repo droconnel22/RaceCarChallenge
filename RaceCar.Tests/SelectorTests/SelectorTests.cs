@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using RaceCar.Core.Entities.CarCollections;
 using RaceCar.Core.Entities.RaceTracks;
@@ -27,11 +28,16 @@ namespace RaceCar.Tests.SelectorTests
 
             // Assert.
             Assert.AreNotSame(typeof(EmptyCarConfigurations), results.GetType());
-            foreach (var carConfiguration in results.GetAllCarConfigurations())
-            {
-                
-            }
+            
+            var actualCarConfiguartion = results.GetAllCarConfigurations().ToArray();
+            var expectedCarConfiguarations = TestHelper.GetCorrectCarConfigurationsResults();
 
+            for (int i = 0; i < actualCarConfiguartion.Length; i++)
+            {
+                Assert.AreEqual(expectedCarConfiguarations[i].LapTime.TotalMinutes, actualCarConfiguartion[i].LapTime.TotalMinutes);
+                Assert.AreEqual(expectedCarConfiguarations[i].AverageFuelConsumptionPerLap, actualCarConfiguartion[i].AverageFuelConsumptionPerLap);
+                Assert.AreEqual(expectedCarConfiguarations[i].FuelCapacity, actualCarConfiguartion[i].FuelCapacity);
+            }
         }
 
 

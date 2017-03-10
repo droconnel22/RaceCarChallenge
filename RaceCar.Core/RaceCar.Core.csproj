@@ -40,6 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entities\CarCollections\CarConfigurationResults.cs" />
     <Compile Include="Entities\CarCollections\CarConfigurations.cs" />
     <Compile Include="Entities\CarCollections\EmptyCarConfigurations.cs" />
     <Compile Include="Entities\Cars\CarConfiguration.cs" />

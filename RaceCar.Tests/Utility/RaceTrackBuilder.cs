@@ -8,9 +8,9 @@ namespace RaceCar.Tests.Utility
     //Let the builder object shoulder the responsibiilty of delievering the IRaceTrack contract
     //not the selectors job to know how to build a racetrack and its requirements.
     //Knowledge == liability.
-    public static class RaceTrackBuilder
+    internal static class RaceTrackBuilder
     {
-        //Little fun. Assumed Le Mans. See https://en.wikipedia.org/wiki/24_Hours_of_Le_Mans
-        public static IRaceTrack Build() => new RaceTrack(5233.53, 384,new TimeSpan(0,5,0));
+        //Little fun. Assumed 24 Hour Le Mans. See https://en.wikipedia.org/wiki/24_Hours_of_Le_Mans
+        internal static IRaceTrack Build() => new RaceTrack(5233.53, 384,new TimeSpan(0,5,0));
     }
 }

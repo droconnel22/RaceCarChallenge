@@ -11,16 +11,15 @@ namespace RaceCar.Core.Strategies
     {
        public ICarConfigurations Execute(ICarConfigurations carConfigurations, IRaceTrack raceTrack)
         {
-              if (carConfigurations is EmptyCarConfigurations || raceTrack is EmptyRaceTrack)
+           if (carConfigurations is EmptyCarConfigurations || raceTrack is EmptyRaceTrack)
                     throw new ArgumentException("You must specify correct values for car configurations or the race track");
-                
-               var results =
-                    carConfigurations
-                        .GetAllCarConfigurations()
-                        .OrderBy(cc => CalculateCompletionTime(cc, raceTrack)) 
-                        .ToList();
 
-            return new CarConfigurations(results);
+           var results =
+               carConfigurations
+                   .GetAllCarConfigurations()
+                   .ToDictionary(cc => CalculateCompletionTime(cc, raceTrack), cc => cc);
+
+            return new CarConfigurationResults(results);
         }
 
         private double CalculateCompletionTime(ICarConfiguration car, IRaceTrack raceTrack) => 
