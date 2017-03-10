@@ -9,7 +9,6 @@ namespace RaceCar.Core.Entities.RaceTracks
 
         private EmptyRaceTrack()
         {
-            
         }
 
         public static IRaceTrack GetInstance()

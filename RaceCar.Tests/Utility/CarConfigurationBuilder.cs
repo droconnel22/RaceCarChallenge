@@ -25,10 +25,10 @@ namespace RaceCar.Tests.Utility
         {
            var carConfigurationList = new ICarConfiguration[4]
             {
-                new CarConfiguration(32, new TimeSpan(0, 0, 0, 0), 0),
-                new CarConfiguration(16, new TimeSpan(0, 0, 0, 0), 0),
-                new CarConfiguration(24, new TimeSpan(0, 0, 0, 0), 0),
-                new CarConfiguration(16, new TimeSpan(0, 0, 0, 0), 0),
+                new CarConfiguration(0, new TimeSpan(0, 0, 0, 0), 0),
+                new CarConfiguration(0, new TimeSpan(0, 0, 0, 0), 0),
+                new CarConfiguration(0, new TimeSpan(0, 0, 0, 0), 0),
+                new CarConfiguration(0, new TimeSpan(0, 0, 0, 0), 0),
             };
 
             return new CarConfigurations(carConfigurationList);

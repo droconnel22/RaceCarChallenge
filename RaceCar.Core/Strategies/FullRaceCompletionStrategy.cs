@@ -26,6 +26,6 @@ namespace RaceCar.Core.Strategies
            (car.LapTime.Minutes * raceTrack.LapsToComplete) +(CalculateRequiredPitStops(car, raceTrack) * raceTrack.PitStopTimeSpan.Minutes);
 
         private int CalculateRequiredPitStops(ICarConfiguration car, IRaceTrack raceTrack) =>
-         (int)(raceTrack.LapsToComplete / (car.FuelCapacity / car.AverageFuelConsumptionPerLap));
+          (int)(raceTrack.LapsToComplete / (car.FuelCapacity / car.AverageFuelConsumptionPerLap));
     }
 }
