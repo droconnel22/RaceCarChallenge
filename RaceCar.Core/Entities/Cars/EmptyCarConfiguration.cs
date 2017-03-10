@@ -1,5 +1,4 @@
 using System;
-
 namespace RaceCar.Core.Entities.Cars
 {
     // Instead of handling nulls, passing nullable objects gives us cleaner implementations.

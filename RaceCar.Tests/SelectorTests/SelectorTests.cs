@@ -16,7 +16,6 @@ namespace RaceCar.Tests.SelectorTests
         [TestMethod]
         public void RunRace_WhenGiven_Valid_CarConfigurations_AlwaysReturnsOrderCollectionByTime()
         {
-
             // Arrange.
             IRaceTrack raceTrack= RaceTrackBuilder.Build();
             ICarConfigurations carConfigurations = CarConfigurationBuilder.Build();
@@ -40,6 +39,17 @@ namespace RaceCar.Tests.SelectorTests
             }
         }
 
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException))]
+        public void RunRace_WhenGiven_ValidCarConfigurations_WithBadValues_AlwaysThrowsExecption()
+        {
+            IRaceTrack raceTrack = RaceTrackBuilder.GetBadTrack();
+            ICarConfigurations carConfigurations = CarConfigurationBuilder.GetZeroValues();
+
+            IRaceCarSetupSelector selector = new RaceCarSetupSelector(new FullRaceCompletionStrategy(), carConfigurations,raceTrack);
+
+            var results = selector.RunRace();
+        }
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentException))]
@@ -49,7 +59,7 @@ namespace RaceCar.Tests.SelectorTests
             ICarConfigurations carConfigurations = EmptyCarConfigurations.GetInstance();
 
             var selector = new RaceCarSetupSelector(new FullRaceCompletionStrategy(), carConfigurations, raceTrack);
-            ICarConfigurations result = selector.RunRace();
+            ICarConfigurations results = selector.RunRace();
         }
     }
 }

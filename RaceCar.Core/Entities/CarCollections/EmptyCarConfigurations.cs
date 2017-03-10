@@ -21,7 +21,5 @@ namespace RaceCar.Core.Entities.CarCollections
         }
      
         public IEnumerable<ICarConfiguration> GetAllCarConfigurations() => new ICarConfiguration[0];
-
-        public void AddCarConfiguration(ICarConfiguration carConfiguration) {}
     }
 }

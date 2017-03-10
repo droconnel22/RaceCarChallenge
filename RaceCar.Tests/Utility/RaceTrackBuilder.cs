@@ -12,5 +12,7 @@ namespace RaceCar.Tests.Utility
     {
         //Little fun. Assumed 24 Hour Le Mans. See https://en.wikipedia.org/wiki/24_Hours_of_Le_Mans
         internal static IRaceTrack Build() => new RaceTrack(5233.53, 384,new TimeSpan(0,5,0));
+
+        internal static IRaceTrack GetBadTrack() => new RaceTrack(1,1,TimeSpan.Zero);
     }
 }

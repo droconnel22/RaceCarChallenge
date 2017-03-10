@@ -11,19 +11,19 @@ namespace RaceCar.Core.Strategies
     {
        public ICarConfigurations Execute(ICarConfigurations carConfigurations, IRaceTrack raceTrack)
         {
-           if (carConfigurations is EmptyCarConfigurations || raceTrack is EmptyRaceTrack)
+             if (carConfigurations is EmptyCarConfigurations || raceTrack is EmptyRaceTrack)
                     throw new ArgumentException("You must specify correct values for car configurations or the race track");
 
-           var results =
-               carConfigurations
-                   .GetAllCarConfigurations()
-                   .ToDictionary(cc => CalculateCompletionTime(cc, raceTrack), cc => cc);
+                var results =
+                    carConfigurations
+                        .GetAllCarConfigurations()
+                        .ToDictionary(cc => CalculateCompletionTime(cc, raceTrack), cc => cc);
 
-            return new CarConfigurationResults(results);
+                return new CarConfigurationResults(results);
         }
 
         private double CalculateCompletionTime(ICarConfiguration car, IRaceTrack raceTrack) => 
-            car.LapTime.TotalMinutes * raceTrack.LapsToComplete + CalculateRequiredPitStops(car, raceTrack) * raceTrack.PitStopTimeSpan.TotalMinutes;
+           (car.LapTime.Minutes * raceTrack.LapsToComplete) +(CalculateRequiredPitStops(car, raceTrack) * raceTrack.PitStopTimeSpan.Minutes);
 
         private int CalculateRequiredPitStops(ICarConfiguration car, IRaceTrack raceTrack) =>
          (int)(raceTrack.LapsToComplete / (car.FuelCapacity / car.AverageFuelConsumptionPerLap));

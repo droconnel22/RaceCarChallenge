@@ -8,7 +8,9 @@ namespace RaceCar.Core.Entities.Cars
         {
 
             if(lapTime == null) throw  new ArgumentNullException(nameof(lapTime));
-
+            if(fuelCapacity <= 0) throw new ArgumentException("Enter value greater than zero");
+            if(averageFuelConsumptionPerLap <= 0.0) throw new ArgumentException("Enter value greater than zero");
+            
             FuelCapacity = fuelCapacity;
             LapTime = lapTime;
             AverageFuelConsumptionPerLap = averageFuelConsumptionPerLap;
