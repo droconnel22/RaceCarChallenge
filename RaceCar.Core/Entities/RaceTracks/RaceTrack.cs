@@ -6,6 +6,13 @@ namespace RaceCar.Core.Entities.RaceTracks
     {
         public RaceTrack(double lapDistance, int lapsToComplete, TimeSpan pitStopTimeSpan)
         {
+            if(lapDistance <= 0.0)
+                throw  new ArgumentOutOfRangeException(nameof(lapDistance));
+            if(lapsToComplete <= 0)
+                throw  new ArgumentOutOfRangeException(nameof(lapsToComplete));
+            if(pitStopTimeSpan == null)
+                throw new ArgumentNullException(nameof(pitStopTimeSpan));
+
             LapDistance = lapDistance;
             LapsToComplete = lapsToComplete;
             PitStopTimeSpan = pitStopTimeSpan;

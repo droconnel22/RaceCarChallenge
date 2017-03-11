@@ -5,6 +5,7 @@ using RaceCar.Core.Entities.CarCollections;
 using RaceCar.Core.Entities.RaceTracks;
 using RaceCar.Core.Selectors;
 using RaceCar.Core.Strategies;
+using RaceCar.Core.Strategies.Calculators;
 using RaceCar.Tests.Utility;
 
 namespace RaceCar.Tests.SelectorTests
@@ -20,7 +21,7 @@ namespace RaceCar.Tests.SelectorTests
             IRaceTrack raceTrack= RaceTrackBuilder.Build();
             ICarConfigurations carConfigurations = CarConfigurationBuilder.Build();
 
-            var selector = new RaceCarSetupSelector(new FullRaceCompletionStrategy(),carConfigurations,raceTrack);
+            var selector = new RaceCarSetupSelector(new FullRaceCompletionStrategy(new FullRaceCalculator()),carConfigurations,raceTrack);
 
             // Act.
             ICarConfigurations results = selector.RunRace();
@@ -46,7 +47,7 @@ namespace RaceCar.Tests.SelectorTests
             IRaceTrack raceTrack = RaceTrackBuilder.GetBadTrack();
             ICarConfigurations carConfigurations = CarConfigurationBuilder.GetZeroValues();
 
-            IRaceCarSetupSelector selector = new RaceCarSetupSelector(new FullRaceCompletionStrategy(), carConfigurations,raceTrack);
+            IRaceCarSetupSelector selector = new RaceCarSetupSelector(new FullRaceCompletionStrategy(new FullRaceCalculator()), carConfigurations,raceTrack);
 
             var results = selector.RunRace();
         }
@@ -58,7 +59,7 @@ namespace RaceCar.Tests.SelectorTests
             IRaceTrack raceTrack = EmptyRaceTrack.GetInstance();
             ICarConfigurations carConfigurations = EmptyCarConfigurations.GetInstance();
 
-            var selector = new RaceCarSetupSelector(new FullRaceCompletionStrategy(), carConfigurations, raceTrack);
+            var selector = new RaceCarSetupSelector(new FullRaceCompletionStrategy(new FullRaceCalculator()), carConfigurations, raceTrack);
             ICarConfigurations results = selector.RunRace();
         }
     }

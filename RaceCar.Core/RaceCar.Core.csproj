@@ -44,15 +44,19 @@
     <Compile Include="Entities\CarCollections\CarConfigurations.cs" />
     <Compile Include="Entities\CarCollections\EmptyCarConfigurations.cs" />
     <Compile Include="Entities\Cars\CarConfiguration.cs" />
+    <Compile Include="Entities\Cars\CarConfigurationResult.cs" />
     <Compile Include="Entities\Cars\EmptyCarConfiguration.cs" />
     <Compile Include="Entities\Cars\ICarConfiguration.cs" />
     <Compile Include="Entities\CarCollections\ICarConfigurations.cs" />
+    <Compile Include="Entities\Cars\ICarConfigurationResult.cs" />
     <Compile Include="Entities\RaceTracks\EmptyRaceTrack.cs" />
     <Compile Include="Entities\RaceTracks\IRaceTrack.cs" />
     <Compile Include="Entities\RaceTracks\RaceTrack.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Selectors\IRaceCarSetupSelector.cs" />
     <Compile Include="Selectors\RaceCarSetupSelector.cs" />
+    <Compile Include="Strategies\Calculators\IRaceCalculator.cs" />
+    <Compile Include="Strategies\Calculators\FullRaceCalculator.cs" />
     <Compile Include="Strategies\FullRaceCompletionStrategy.cs" />
     <Compile Include="Strategies\IRaceStrategy.cs" />
   </ItemGroup>

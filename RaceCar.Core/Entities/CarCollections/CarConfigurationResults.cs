@@ -18,21 +18,21 @@ namespace RaceCar.Core.Entities.CarCollections
 
     public class CarConfigurationResults : ICarConfigurations
     {
-        private readonly IDictionary<double, ICarConfiguration> resultDictionary;
+        private readonly IEnumerable<ICarConfigurationResult> results;
 
-        public CarConfigurationResults(IDictionary<double,ICarConfiguration> results)
+        public CarConfigurationResults(IEnumerable<ICarConfigurationResult> results)
         {
             if(results ==null)
                 throw new ArgumentNullException(nameof(results));
 
-            this.resultDictionary = results;
+            this.results = results;
         }
 
         // OrderBy is stable (preserves duplicaltes) quick sorts O(N log N) under the covers.
         public IEnumerable<ICarConfiguration> GetAllCarConfigurations() =>
-            this.resultDictionary
-                .OrderBy(rd => rd.Key)
-                .Select(rdd => rdd.Value)
+            this.results
+                .OrderBy(rd => rd.TotalRaceTime)
+                .Select(rdd => rdd.CarConfiguration)
                 .ToList();
     }
 }

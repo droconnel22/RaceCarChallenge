@@ -3,12 +3,22 @@ using System.Linq;
 using RaceCar.Core.Entities.CarCollections;
 using RaceCar.Core.Entities.Cars;
 using RaceCar.Core.Entities.RaceTracks;
+using RaceCar.Core.Strategies.Calculators;
 
-// OrderBy is stable (preserves duplicaltes) quick sorts O(N log N) under the covers.
 namespace RaceCar.Core.Strategies
 {
     public class FullRaceCompletionStrategy : IRaceStrategy
     {
+        private readonly IRaceCalculator fullRaceCalculator;
+
+        public FullRaceCompletionStrategy(IRaceCalculator fullRaceCalculator)
+        {
+            if(fullRaceCalculator == null)
+                throw  new ArgumentNullException(nameof(fullRaceCalculator));
+            this.fullRaceCalculator = fullRaceCalculator;
+        }
+
+
        public ICarConfigurations Execute(ICarConfigurations carConfigurations, IRaceTrack raceTrack)
         {
              if (carConfigurations is EmptyCarConfigurations || raceTrack is EmptyRaceTrack)
@@ -17,15 +27,9 @@ namespace RaceCar.Core.Strategies
                 var results =
                     carConfigurations
                         .GetAllCarConfigurations()
-                        .ToDictionary(cc => CalculateCompletionTime(cc, raceTrack), cc => cc);
+                        .Select(cc => new CarConfigurationResult(this.fullRaceCalculator.CalculateCompletionTime(cc, raceTrack),cc));
 
                 return new CarConfigurationResults(results);
         }
-
-        private double CalculateCompletionTime(ICarConfiguration car, IRaceTrack raceTrack) => 
-           (car.LapTime.Minutes * raceTrack.LapsToComplete) +(CalculateRequiredPitStops(car, raceTrack) * raceTrack.PitStopTimeSpan.Minutes);
-
-        private int CalculateRequiredPitStops(ICarConfiguration car, IRaceTrack raceTrack) =>
-          (int)(raceTrack.LapsToComplete / (car.FuelCapacity / car.AverageFuelConsumptionPerLap));
     }
 }
